@@ -66,7 +66,7 @@ public class HealPoolTask extends BukkitRunnable {
 
     public static void removeForArena(IArena a){
         for (HealPoolTask hpt: new ArrayList<>(healPoolTaskList)) {
-            if (hpt.getArena().getWorldName().equals(a)){
+            if (hpt.getArena().equals(a)){
                 healPoolTaskList.remove(hpt);
                 hpt.cancel();
             }
