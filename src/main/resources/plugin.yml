@@ -1,0 +1,6 @@
+name: BWhealpool
+version: '${project.version}'
+main: healpoolremake.bwhealpool.BWhealpool
+api-version: 1.17
+authors: [ JTMcQuigg ]
+description: Heal pool addon for BW1058
