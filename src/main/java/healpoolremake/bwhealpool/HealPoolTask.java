@@ -3,6 +3,7 @@ package healpoolremake.bwhealpool;
 import com.andrei1058.bedwars.api.arena.IArena;
 import com.andrei1058.bedwars.api.arena.team.ITeam;
 import com.andrei1058.bedwars.api.configuration.ConfigPath;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -47,6 +48,7 @@ public class HealPoolTask extends BukkitRunnable {
                     int chance = r.nextInt(5);
                     if (chance == 0) {
                         for (Player p : bwt.getMembers()) {
+                            Bukkit.getServer().getLogger().info("Debug particle is spawning now");
                             p.spawnParticle(Particle.VILLAGER_HAPPY, l, 1);
                         }
                     }
@@ -80,8 +82,16 @@ public class HealPoolTask extends BukkitRunnable {
         }
     }
 
+    public  static void removeForTeam(ITeam team){
+        for (HealPoolTask hpt: new ArrayList<>(healPoolTaskList)) {
+            if (hpt.getBwt().equals(team)){
+                healPoolTaskList.remove(hpt);
+                hpt.cancel();
+            }
+        }
+    }
+
     public  ITeam getBwt() {return  bwt;}
 
     public IArena getArena() {return arena;}
-
 }
