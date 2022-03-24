@@ -1,18 +1,16 @@
 package healpoolremake.bwhealpool;
 
-import com.andrei1058.bedwars.api.BedWars;
 import com.andrei1058.bedwars.api.arena.IArena;
 import com.andrei1058.bedwars.api.arena.team.ITeam;
 import com.andrei1058.bedwars.api.events.gameplay.GameEndEvent;
-import com.andrei1058.bedwars.api.events.player.PlayerBedBreakEvent;
 import com.andrei1058.bedwars.api.events.player.PlayerKillEvent;
 import com.andrei1058.bedwars.api.events.server.ArenaDisableEvent;
+import com.andrei1058.bedwars.api.events.team.TeamEliminatedEvent;
 import com.andrei1058.bedwars.api.events.upgrades.UpgradeBuyEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BWhealpool extends JavaPlugin implements Listener {
@@ -60,14 +58,5 @@ public final class BWhealpool extends JavaPlugin implements Listener {
     public void onEnd(GameEndEvent e) {HealPoolTask.removeForArena(e.getArena());}
 
     @EventHandler
-    public void teamDead(PlayerKillEvent event) {
-        if (event.getArena().getTeam(event.getVictim()).isBedDestroyed()){
-            for (Player mate: event.getArena().getTeam(event.getVictim()).getMembers()) {
-                if (mate.isDead()){
-                    HealPoolTask.removeForTeam(event.getArena().getTeam(event.getVictim()));
-                }
-
-            }
-        }
-    }
+    public void teamDead(TeamEliminatedEvent e) {HealPoolTask.removeForTeam(e.getTeam());}
 }

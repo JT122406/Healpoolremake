@@ -80,6 +80,8 @@
             <groupId>com.andrei1058.bedwars</groupId>
             <artifactId>bedwars-api</artifactId>
             <version>22.3-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/bedwars-api-22.3-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

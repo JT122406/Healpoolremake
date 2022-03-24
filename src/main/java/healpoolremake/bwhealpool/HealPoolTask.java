@@ -22,7 +22,7 @@ public class HealPoolTask extends BukkitRunnable {
     private Random r = new Random();
     private Location l;
 
-    private static List<HealPoolTask> healPoolTaskList = new ArrayList<>();
+    private static List<HealPoolTask> healPoolTasks = new ArrayList<>();
 
     public HealPoolTask(ITeam bwt){
         this.bwt = bwt;
@@ -35,7 +35,7 @@ public class HealPoolTask extends BukkitRunnable {
         this.minZ = Math.min(bwt.getSpawn().clone().add(0, 0, radius).getBlockZ(), bwt.getSpawn().clone().subtract(0, 0, radius).getBlockZ());
         this.arena = bwt.getArena();
         this.runTaskTimer(BWhealpool.plugin, 0, 80L);
-        healPoolTaskList.add(this);
+        healPoolTasks.add(this);
     }
 
     @Override
@@ -58,40 +58,40 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public static boolean exists(IArena arena, ITeam bwt){
-        for (HealPoolTask hpt : new ArrayList<>(healPoolTaskList)) {
-            if (hpt.getArena()  == arena && hpt.getBwt() == bwt) return true;
+        for (HealPoolTask hpt : new ArrayList<>(healPoolTasks)) {
+            if (hpt.getArena() == arena && hpt.getBwt() == bwt) return true;
         }
         return false;
     }
 
     public static void removeForArena(IArena a){
-        for (HealPoolTask hpt: new ArrayList<>(healPoolTaskList)) {
+        for (HealPoolTask hpt: new ArrayList<>(healPoolTasks)) {
             if (hpt.getArena().equals(a)){
-                healPoolTaskList.remove(hpt);
+                healPoolTasks.remove(hpt);
                 hpt.cancel();
             }
         }
     }
 
     public  static void removeForArena(String a){
-        for (HealPoolTask hpt: new ArrayList<>(healPoolTaskList)) {
+        for (HealPoolTask hpt: new ArrayList<>(healPoolTasks)) {
             if (hpt.getArena().getWorldName().equals(a)){
-                healPoolTaskList.remove(hpt);
+                healPoolTasks.remove(hpt);
                 hpt.cancel();
             }
         }
     }
 
     public  static void removeForTeam(ITeam team){
-        for (HealPoolTask hpt: new ArrayList<>(healPoolTaskList)) {
+        for (HealPoolTask hpt: new ArrayList<>(healPoolTasks)) {
             if (hpt.getBwt().equals(team)){
-                healPoolTaskList.remove(hpt);
+                healPoolTasks.remove(hpt);
                 hpt.cancel();
             }
         }
     }
 
-    public  ITeam getBwt() {return  bwt;}
+    public ITeam getBwt() {return  bwt;}
 
     public IArena getArena() {return arena;}
 }
