@@ -40,7 +40,7 @@ public final class BWhealpool extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onTeamUpgrade(UpgradeBuyEvent e){
-        if (e.getTeamUpgrade().getName().contains("heal")){
+        if (e.getTeamUpgrade().getName().equalsIgnoreCase("upgrade-heal-pool")){
             IArena a = e.getArena();
             if (a == null) return;
             ITeam bwt = a.getTeam(e.getPlayer());
