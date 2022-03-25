@@ -18,9 +18,7 @@ public final class BWhealpool extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
         plugin = this;
-
         //Check for Bedwars
         if (!Bukkit.getPluginManager().isPluginEnabled("Bedwars1058")){
             this.getLogger().info("You must install Bedwars1058");
@@ -31,9 +29,7 @@ public final class BWhealpool extends JavaPlugin implements Listener {
         {
             this.getLogger().info("Detected Bedwars1058!");
         }
-
         Bukkit.getPluginManager().registerEvents(this, this);
-
     }
 
     @EventHandler
@@ -55,7 +51,9 @@ public final class BWhealpool extends JavaPlugin implements Listener {
     @EventHandler
     public void onEnd(GameEndEvent e) {HealPoolTask.removeForArena(e.getArena());}
 
-
     @EventHandler
-    public void teamDead(TeamEliminatedEvent e) {HealPoolTask.removeForTeam(e.getTeam());}
+    public void teamDead(TeamEliminatedEvent e)
+    {
+        HealPoolTask.removeForTeam(e.getTeam());
+    }
 }

@@ -3,7 +3,6 @@ package healpoolremake.bwhealpool;
 import com.andrei1058.bedwars.api.arena.IArena;
 import com.andrei1058.bedwars.api.arena.team.ITeam;
 import com.andrei1058.bedwars.api.configuration.ConfigPath;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -57,6 +56,7 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public static boolean exists(IArena arena, ITeam bwt){
+        if (healPoolTasks.isEmpty()) return false;
         for (HealPoolTask hpt : healPoolTasks) {
             if (hpt.getArena() == arena && hpt.getBwt() == bwt) return true;
         }
@@ -64,7 +64,8 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public static void removeForArena(IArena a){
-        for (HealPoolTask hpt: healPoolTasks) {
+        if (healPoolTasks.isEmpty()) return;
+        for (HealPoolTask hpt : healPoolTasks) {
             if (hpt.getArena().equals(a)){
                 healPoolTasks.remove(hpt);
                 hpt.cancel();
@@ -73,7 +74,8 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public static void removeForArena(String a){
-        for (HealPoolTask hpt: healPoolTasks) {
+        if (healPoolTasks.isEmpty()) return;
+        for (HealPoolTask hpt : healPoolTasks) {
             if (hpt.getArena().getWorldName().equals(a)){
                 healPoolTasks.remove(hpt);
                 hpt.cancel();
@@ -82,6 +84,7 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public  static void removeForTeam(ITeam team){
+        if (healPoolTasks.isEmpty()) return;
         for (HealPoolTask hpt : healPoolTasks) {
             if (hpt.getBwt().equals(team)){
                 healPoolTasks.remove(hpt);
