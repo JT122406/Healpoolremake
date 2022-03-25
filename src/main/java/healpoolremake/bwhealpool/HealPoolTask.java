@@ -48,7 +48,6 @@ public class HealPoolTask extends BukkitRunnable {
                     int chance = r.nextInt(5);
                     if (chance == 0) {
                         for (Player p : bwt.getMembers()) {
-                            Bukkit.getServer().getLogger().info("Debug particle is spawning now");
                             p.spawnParticle(Particle.VILLAGER_HAPPY, l, 1);
                         }
                     }
