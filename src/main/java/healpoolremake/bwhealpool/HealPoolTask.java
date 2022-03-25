@@ -58,14 +58,14 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public static boolean exists(IArena arena, ITeam bwt){
-        for (HealPoolTask hpt : new ArrayList<>(healPoolTasks)) {
+        for (HealPoolTask hpt : healPoolTasks) {
             if (hpt.getArena() == arena && hpt.getBwt() == bwt) return true;
         }
         return false;
     }
 
     public static void removeForArena(IArena a){
-        for (HealPoolTask hpt: new ArrayList<>(healPoolTasks)) {
+        for (HealPoolTask hpt: healPoolTasks) {
             if (hpt.getArena().equals(a)){
                 healPoolTasks.remove(hpt);
                 hpt.cancel();
@@ -73,8 +73,8 @@ public class HealPoolTask extends BukkitRunnable {
         }
     }
 
-    public  static void removeForArena(String a){
-        for (HealPoolTask hpt: new ArrayList<>(healPoolTasks)) {
+    public static void removeForArena(String a){
+        for (HealPoolTask hpt: healPoolTasks) {
             if (hpt.getArena().getWorldName().equals(a)){
                 healPoolTasks.remove(hpt);
                 hpt.cancel();
@@ -83,7 +83,7 @@ public class HealPoolTask extends BukkitRunnable {
     }
 
     public  static void removeForTeam(ITeam team){
-        for (HealPoolTask hpt: new ArrayList<>(healPoolTasks)) {
+        for (HealPoolTask hpt : healPoolTasks) {
             if (hpt.getBwt().equals(team)){
                 healPoolTasks.remove(hpt);
                 hpt.cancel();

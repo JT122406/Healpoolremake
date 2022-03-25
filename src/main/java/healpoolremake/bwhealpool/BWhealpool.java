@@ -55,6 +55,7 @@ public final class BWhealpool extends JavaPlugin implements Listener {
     @EventHandler
     public void onEnd(GameEndEvent e) {HealPoolTask.removeForArena(e.getArena());}
 
+
     @EventHandler
     public void teamDead(TeamEliminatedEvent e) {HealPoolTask.removeForTeam(e.getTeam());}
 }
