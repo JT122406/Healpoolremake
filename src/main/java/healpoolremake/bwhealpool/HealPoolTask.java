@@ -33,7 +33,7 @@ public class HealPoolTask extends BukkitRunnable {
         this.maxZ = Math.max(bwt.getSpawn().clone().add(0, 0, radius).getBlockZ(), bwt.getSpawn().clone().subtract(0, 0, radius).getBlockZ());
         this.minZ = Math.min(bwt.getSpawn().clone().add(0, 0, radius).getBlockZ(), bwt.getSpawn().clone().subtract(0, 0, radius).getBlockZ());
         this.arena = bwt.getArena();
-        this.runTaskTimer(BWhealpool.plugin, 0, 80L);
+        this.runTaskTimerAsynchronously(BWhealpool.plugin, 0, 80L);
         healPoolTasks.add(this);
     }
 
